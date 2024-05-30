@@ -32,15 +32,15 @@ Currently, the addon does not use online or public web APIs and databases to get
 The PvP power score (\$S\$) is calculated using the following formula:
 
 \$\$
-S = W\_R \cdot R + W\_WL \cdot A + W\_I \cdot I
+S = W\_R \cdot R + W\_D \cdot D + W\_I \cdot I
 \$\$
 
 Where:
 
 - \$R\$ is the PvP rating
-- \$WL\$ is the win/loss ratio
+- \$D\$ is the win/loss ratio
 - \$I\$ is the PvP item level
-- \$W\_R\$, \$W\_WL\$, and \$W\_I\$ are the weights assigned to each component
+- \$W\_R\$, \$W\_D\$, and \$W\_I\$ are the weights assigned to each component
 
 Conditions:
 
@@ -48,7 +48,7 @@ Conditions:
 
 ### Example Calculation (as of Retail v.10.2.7)
 
-If the weights are set to \$W\_R = 0.5\$, \$W\_WL = 0.3\$, and \$W\_I = 0.2\$, and the target character has a PvP rating of 2000, an win/loss ratio of 1.5, and a PvP item level of 500, the PvP power score would be:
+If the weights are set to \$W\_R = 0.5\$, \$W\_D = 0.3\$, and \$W\_I = 0.2\$, and the target character has a PvP rating of 2000, an win/loss ratio of 1.5, and a PvP item level of 500, the PvP power score would be:
 
 \$\$
 S = 0.5 \cdot 2000 + 0.3 \cdot 1.5 + 0.2 \cdot 500 = 1000 + 0.45 + 80 = 1080.45 (~ 1080)
