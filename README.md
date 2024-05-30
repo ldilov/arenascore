@@ -1,4 +1,4 @@
-<img src="arenascore.png" alt="WoW Arena Score Logo" width="400" height="400">
+<img src="doc/arenascore.png" alt="WoW Arena Score Logo" width="400" height="400">
 
 # WoW PvP Power Scoring Addon
 
