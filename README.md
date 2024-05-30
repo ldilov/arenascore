@@ -29,29 +29,30 @@ Currently, the addon does not use online or public web APIs and databases to get
 
 ## PvP Power Calculation
 
-The PvP power score (\( S \)) is calculated using the following formula:
+The PvP power score (\$S\$) is calculated using the following formula:
 
-\[
-S = W_R \cdot R + W_A \cdot A + W_I \cdot I
-\]
+\$\$
+S = W\_R \cdot R + W\_A \cdot A + W\_I \cdot I
+\$\$
 
 Where:
-- \( R \) is the PvP rating
-- \( A \) is the achievements score
-- \( I \) is the PvP item level
-- \( W_R \), \( W_A \), and \( W_I \) are the weights assigned to each component
+
+- \$R\$ is the PvP rating
+- \$A\$ is the achievements score
+- \$I\$ is the PvP item level
+- \$W\_R\$, \$W\_A\$, and \$W\_I\$ are the weights assigned to each component
 
 Conditions:
 
-- If rating >= 3000, then you get the max ArenaScore value
+- If \$R \geq 3000\$, then you get the max ArenaScore value
 
 ### Example Calculation (as of Retail v.10.2.7)
 
-If the weights are set to \( W_R = 0.5 \), \( W_A = 0.3 \), and \( W_I = 0.2 \), and the target character has a PvP rating of 2000, an achievements score of 1500, and a PvP item level of 400, the PvP power score would be:
+If the weights are set to \$W\_R = 0.5\$, \$W\_A = 0.3\$, and \$W\_I = 0.2\$, and the target character has a PvP rating of 2000, an achievements score of 1500, and a PvP item level of 400, the PvP power score would be:
 
-\[
+\$\$
 S = 0.5 \cdot 2000 + 0.3 \cdot 1500 + 0.2 \cdot 400 = 1000 + 450 + 80 = 1530
-\]
+\$\$
 
 ### Why This Method?
 
