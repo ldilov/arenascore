@@ -1,9 +1,9 @@
-## Interface: 100207
+## Interface: 110000
 ## SavedVariables: WoWArenaScoreDB
 ## Title: Wow Arena Score
 ## Notes: Enhances the tooltip with PVP statistics.
 ## Author: Lazar Dilov
-## Version: 1.0.0
+## Version: 1.0.1
 
 lib\AceAddon-3.0\AceAddon-3.0.lua
 lib\AceHook-3.0\AceHook-3.0.lua
