@@ -36,17 +36,20 @@ function WSA_PVPStats:ProcessPVPStats()
         soloSeasonWon = tonumber(soloSeasonWon) > 0 and tonumber(soloSeasonWon) or 0,
     }
 
+    WSA_Cache:UpdateCache(unit, stats)
+
     if not (stats.twosRating or stats.threesRating or stats.soloRating) then
         inspectLock = false
-        return nil
+        return {}
     end
 
-    WSA_Cache:UpdateCache(unit, stats)
     inspectLock = false
     return stats
 end
 
 function WSA_PVPStats:GetAverageItemLevel(unit)
+    WSA_AnimatedDots:StopLoadingDots()
+
     local totalItemLevel = 0
     local itemCount = 0
     
@@ -87,6 +90,7 @@ function WSA_PVPStats:GetPVPStats(unit)
     local cachedStats = WSA_Cache:GetCachedData(unit)
     if cachedStats then
         inspectLock = false
+        WSA_AnimatedDots:StopLoadingDots()
         return cachedStats
     end
 
@@ -95,6 +99,7 @@ function WSA_PVPStats:GetPVPStats(unit)
     end
 
     NotifyInspect(unit)
+    WSA_AnimatedDots:StartLoadingDots()
     self.globals.pendingInspectUnit = unit
 
     return nil

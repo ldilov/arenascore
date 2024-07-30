@@ -11,8 +11,12 @@ function WSA_DB:New()
     local self = setmetatable({}, WSA_DB)
     local defaults = PatchVariables[currentVersion] or {}
 
+    defaults["global"] =  {
+        inspectCache = {},
+        cacheTimeout = PatchVariables.cacheTimeOut
+    }
+    
     self.db = AceDB:New("WoWArenaScoreDB", defaults, true)
-
     local _, _, _, tocVersion = GetBuildInfo()
     if not self.db.profile.version or self.db.profile.version < currentVersion or self.db.profile.tocVersion ~= tocVersion then
         self.db:ResetDB("Default")

@@ -15,6 +15,9 @@ src\Constants\Colors.lua
 src\Constants\PatchVariables.lua
 src\Constants\Effects.lua
 
+src\Components\Components.lua
+src\Components\AnimatedDots.lua
+
 src\Core.lua
 src\Cache.lua
 src\PVPStats.lua

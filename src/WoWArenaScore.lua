@@ -18,10 +18,8 @@ end
 function WSA:OnInspectReady(event, inspecteeGUID)
     if WSA_Core:IsUnitInspectRequestPending(inspecteeGUID) then
         local stats = WSA_PVPStats:ProcessPVPStats()
-        if stats then
-            WSA_Tooltip:UpdateTooltip(stats)
-            WSA_Core:ResetGlobalContextField("pendingInspectUnit")
-        end
+        WSA_Core:ResetGlobalContextField("pendingInspectUnit")
+        WSA_Tooltip:UpdateTooltip(stats)
     end
 end
 
@@ -39,6 +37,7 @@ end
 
 
 function WSA:OnTooltipSetUnit(tooltip)
+    WSA_Core:SetUnitToolTip(tooltip)
     WSA_Tooltip:ShowTooltip(tooltip)
 end
 

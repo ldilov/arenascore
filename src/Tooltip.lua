@@ -6,6 +6,10 @@ function WSA_Tooltip:Initialize(db, globals)
     self.globals = globals
 end
 
+local function AreStatsValid(stats)
+    return stats and (stats.twosRating ~= nil or stats.threesRating ~= nil or stats.soloRating ~= nil)
+end
+
 local function AddScoreTooltip(tooltip,  stats,  metric,  color)
     tooltip:AddLine(" ")
     WSA_Utilities.AddColoredLine(tooltip, "PVP Statistics:", Colors.WHITE)
@@ -42,7 +46,7 @@ end
 
 function WSA_Tooltip:UpdateTooltip(stats)
     local tooltip = GameTooltip
-    if tooltip and stats then
+    if tooltip and AreStatsValid(stats) then
         local itemLevel = WSA_PVPStats:GetAverageItemLevel("player")
         local metric, color = WSA_Math:CalculateMetric(stats, itemLevel)
         AddScoreTooltip(tooltip, stats, metric, color)
@@ -54,15 +58,13 @@ function WSA_Tooltip:ShowTooltip(tooltip)
     if not unit or not UnitIsPlayer(unit) then return end
 
     local stats = WSA_PVPStats:GetPVPStats(unit)
-
-    if stats then
+    if AreStatsValid(stats) then
         local itemLevel = WSA_PVPStats:GetAverageItemLevel(unit)
         local metric, color = WSA_Math:CalculateMetric(stats, itemLevel)
         AddScoreTooltip(tooltip, stats, metric, color)
-    else
+    elseif stats then
         tooltip:AddLine(" ")
-        WSA_Utilities.AddColoredLine(tooltip, "Data not available yet ", Colors.RED)
-        WSA_Utilities.AddColoredLine(tooltip, "or missing rated pvp history!", Colors.RED)
+        WSA_Utilities.AddColoredLine(tooltip, "Missing rated pvp history!", Colors.RED)
         tooltip:Show()
     end
 end

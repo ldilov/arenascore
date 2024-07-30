@@ -11,6 +11,24 @@ WSA_Cache = {
 
 WSA_Cache.__index = WSA_Cache
 
+--- Initialize the cache, loading data from the database if available
+--- @param db WSA_DB
+function WSA_Cache:Initialize(db)
+    self.db = db
+    self.inspectCache = self.db:GetDB().global.inspectCache or {}
+    self.cacheTimeout = self.db:GetDB().global.cacheTimeout or PatchVariables.cacheTimeOut
+    -- Register event to save data to the database on logout or UI reload
+    AceEvent:RegisterEvent("PLAYER_LOGOUT", function()
+        self:SaveCache()
+    end)
+end
+
+--- Save the current cache to the database
+function WSA_Cache:SaveCache()
+    self.db:GetDB().global.inspectCache = self.inspectCache
+    self.db:GetDB().global.cacheTimeout = self.cacheTimeout
+end
+
 --- Function to get cached data
 --- @param unit Unit
 --- @return InspectArenaData
